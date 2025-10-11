@@ -1,12 +1,20 @@
-export function TasksCounter() {
+import type { ITaskCounter } from "@/types/taskCounter.interface";
+import type { FC, ReactElement } from "react";
+
+export const TasksCounter: FC<ITaskCounter> = (props): ReactElement => {
+  const {status, count} = props;
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="p-6 border-solid border-yellow-500 border-4 rounded-full mb-4">
+      <div className={`p-6 border-solid border-yellow-500 border-4 rounded-full mb-4`}>
         <div className="min-w-10 min-h-10 text-white text-3xl text-center flex justify-center leading-10">
-          12
+          {count}
         </div>
       </div>
-      <div className="text-white text-xl text-center">Todo</div>
+      <div className="text-white text-xl text-center">
+        {status === "todo" && "Pending"}
+        {status === "inProgress" && "In Progress"}
+        {status === "completed" && "Completed"}
+      </div>
     </div>
   );
 }
