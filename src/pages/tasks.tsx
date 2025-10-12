@@ -1,5 +1,6 @@
 import { TasksCounter } from "@/components/tasksCounter/tasksCounter";
 import type { FC, ReactElement } from "react";
+import { Task } from "@/components/task/task";
 
 export const Tasks: FC = (): ReactElement => {
     return (
@@ -14,6 +15,7 @@ export const Tasks: FC = (): ReactElement => {
                         <TasksCounter status = "inProgress" count={2}/>
                         <TasksCounter status = "completed" count={1}/>
                     </div>
+                <Task/>
                 </div>
             </section>
             <section className="flex basis-1/3 bg-blue-300">
