@@ -17,19 +17,19 @@ export function Task() {
     <Card className="w-full mb-8">
       <CardHeader className="flex flex-row justify-between">
         <CardTitle className="basis-2/3 leading-8">
-          The Title Of the Task
+          #1 Task
         </CardTitle>
         <div>
           <Badge className="mr-2" variant="outline">
-            1 Jan, 2025
+            12 October, 2025
           </Badge>
-          <Badge className="bg-sky-800" variant="outline">
-            normal
+          <Badge className="bg-red-800" variant="outline">
+            Urgent
           </Badge>
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription>Description of the task</CardDescription>
+        <CardDescription>Urgent task, resolve inmediately</CardDescription>
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex flex-row items-center">

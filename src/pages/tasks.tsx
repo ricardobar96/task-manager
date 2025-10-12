@@ -8,9 +8,9 @@ export const Tasks: FC = (): ReactElement => {
             <section className="flex basis-2/3 justify-center">
                 <div className="flex flex-col w-4/5">
                     <h1 className="text-white font-bold text-2xl mb-8">
-                        #1 Task - 9 October, 2025
+                        Current tasks
                     </h1>
-                    <div className="flex justify-around">
+                    <div className="flex justify-around mb-12">
                         <TasksCounter status = "todo" count={4}/>
                         <TasksCounter status = "inProgress" count={2}/>
                         <TasksCounter status = "completed" count={1}/>
