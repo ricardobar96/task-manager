@@ -32,9 +32,21 @@ export const Task: FC<ITask> = (props: ITask): ReactElement => {
           <Badge className="mr-2" variant="outline">
             {formattedDate}
           </Badge>
-          <Badge className="bg-red-800" variant="outline">
-            {priority}
-          </Badge>
+          {priority === "normal" && (
+            <Badge className="bg-yellow-800" variant="outline">
+              {priority}
+            </Badge>
+          )}
+          {priority === "high" && (
+            <Badge className="bg-red-800" variant="outline">
+              {priority}
+            </Badge>
+          )}
+          {priority === "low" && (
+            <Badge className="bg-blue-800" variant="outline">
+              {priority}
+            </Badge>
+          )}
         </div>
       </CardHeader>
       <CardContent>

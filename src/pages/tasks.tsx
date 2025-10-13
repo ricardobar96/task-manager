@@ -22,6 +22,13 @@ export const Tasks: FC = (): ReactElement => {
                     priority="high"
                     status="inProgress"
                 />
+                <Task
+                    title="Task #2"
+                    description="Low priority task"
+                    dueDate="2025-10-13T12:00:00.000Z"
+                    priority="low"
+                    status="todo"
+                />
                 </div>
             </section>
             <section className="flex basis-1/3 bg-blue-300">
