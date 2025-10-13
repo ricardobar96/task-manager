@@ -11,29 +11,38 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import type { ITask } from "@/types/task.interface";
+import type { FC, ReactElement } from "react";
+    
+export const Task: FC<ITask> = (props: ITask): ReactElement => {
+  const {title, description, status, priority, dueDate} = props;
+  let formattedDate = new Date(dueDate).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  })
 
-export function Task() {
   return (
     <Card className="w-full mb-8">
       <CardHeader className="flex flex-row justify-between">
         <CardTitle className="basis-2/3 leading-8">
-          #1 Task
+          {title}
         </CardTitle>
         <div>
           <Badge className="mr-2" variant="outline">
-            12 October, 2025
+            {formattedDate}
           </Badge>
           <Badge className="bg-red-800" variant="outline">
-            Urgent
+            {priority}
           </Badge>
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription>Urgent task, resolve inmediately</CardDescription>
+        <CardDescription>{description}</CardDescription>
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex flex-row items-center">
-          <Switch id="in-progress" />
+          <Switch id="in-progress" checked={status === "inProgress"? true : false}/>
           <Label className="ml-4" htmlFor="in-progress">
             In Progress
           </Label>
