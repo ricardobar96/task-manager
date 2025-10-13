@@ -32,7 +32,7 @@ export const Task: FC<ITask> = (props: ITask): ReactElement => {
           <Badge className="mr-2" variant="outline">
             {formattedDate}
           </Badge>
-          {priority === "normal" && (
+          {priority === "medium" && (
             <Badge className="bg-yellow-800" variant="outline">
               {priority}
             </Badge>
