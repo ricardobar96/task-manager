@@ -1,4 +1,11 @@
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { useState } from "react";
 
 import {
   Popover,
@@ -16,6 +23,7 @@ import {
 } from "@/components/ui/select";
 
 export const CreateTaskForm = () => {
+const [date, setDate] = useState(new Date("2025-01-01"));
    return (
     <div>
       <h2 className="text-xl mb-4">Create a task</h2>
@@ -51,6 +59,36 @@ export const CreateTaskForm = () => {
               </SelectContent>
             </Select>
           </div>
+        </div>
+         <div className="py-2">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-4" />
+                {date ? format(date, "PPP") : <span>Date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={(day) => day && setDate(day)}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
+        <div className="py-2">
+          <Textarea placeholder="Description" />
+        </div>
+        <div className="py-2 flex justify-end">
+          <Button>Confirm</Button>
         </div>
       </form>
     </div>
