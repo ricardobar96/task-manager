@@ -5,10 +5,10 @@ export const CreateTaskSchema = z.object({
     .string()
     .max(150, { message: "Max 150 characters" }),
   dueDate: z.date({
-    required_error: "Date required.",
+    required_error: "Select a date",
   }),
   description: z.string().max(500, {
-    message: "Max 500 characters.",
+    message: "Max 500 characters",
   }),
   status: z.enum(["todo", "inProgress", "completed"], {
     message: "Select a status",
