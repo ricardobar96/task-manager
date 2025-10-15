@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import type { ITask } from "@/types/task.interface";
+import type { IResponse } from "@/types/response.interface";
 
 const createTask = async (task: ITask) => {
   const response = await fetch(`${import.meta.env.VITE_API_URL}tasks/create`, {
@@ -18,7 +19,7 @@ const createTask = async (task: ITask) => {
 export function useCreateTask() {
   return useMutation({
     mutationFn: createTask,
-    onSuccess: (response) => {
+    onSuccess: (response: IResponse<ITask>) => {
       console.log(response);
     },
     onError: (error) => {
