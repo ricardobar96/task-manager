@@ -6,9 +6,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTaskSchema } from "@/schema/createTask.schema";
+import { useCreateTask } from "@/hooks/createTask.hook";
+import { useQueryClient } from "@tanstack/react-query";
+import { Toaster } from "sonner";
+import { toast } from "sonner";
+import z from "zod";
 
 import {
   Form,
@@ -35,14 +40,29 @@ import {
 
 export function CreateTaskForm () {
   const [date, setDate] = useState();
-  const form = useForm({
+  const { mutate, isSuccess, isError, isPending } = useCreateTask();
+  const queryClient = useQueryClient();
+
+  const form = useForm<z.infer<typeof CreateTaskSchema>>({
     resolver: zodResolver(CreateTaskSchema),
+    defaultValues: {
+      status: "todo",
+      priority: "medium",
+    },
   });
+
   function onSubmit(values: any) {
-    console.log(values);
-    let dueDate = JSON.stringify(values.dueDate);
-    console.log(dueDate);
+    let dueDate = values.dueDate.toISOString();
+    mutate({ ...values, dueDate });
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast("Task created");
+    }
+    form.reset();
+  }, [isSuccess]);
+
   return (
     <div>
       <h2 className="text-xl mb-4">New task</h2>
@@ -84,10 +104,8 @@ export function CreateTaskForm () {
                       </FormControl>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="todo">Todo</SelectItem>
-                          <SelectItem value="inProgress">
-                            In Progress
-                          </SelectItem>
+                          <SelectItem value="todo">Pending</SelectItem>
+                          <SelectItem value="inProgress">In Progress</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -189,6 +207,7 @@ export function CreateTaskForm () {
           </div>
         </form>
       </Form>
+      <Toaster />
     </div>
   );
 }
