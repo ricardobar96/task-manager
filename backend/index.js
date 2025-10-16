@@ -12,6 +12,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.get("/tasks", async (req, res) => {
+  try {
+    const tasks = await Task.find();
+    res.json({ data: tasks, meta: { count: tasks.length } });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 app.post('/tasks/create', async (req, res) => {
   try {
     const task = await Task.create(req.body);
