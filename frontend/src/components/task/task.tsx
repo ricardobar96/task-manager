@@ -15,7 +15,7 @@ import type { ITask } from "@/types/task.interface";
 import type { FC, ReactElement } from "react";
     
 export const Task: FC<ITask> = (props: ITask): ReactElement => {
-  const {title, description, status, priority, dueDate} = props;
+  const {title, description, status, priority, dueDate, _id} = props;
   let formattedDate = new Date(dueDate).toLocaleString("en-GB", {
     day: "numeric",
     month: "short",

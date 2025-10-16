@@ -7,6 +7,12 @@ import type { ITask } from "@/types/task.interface";
 
 export const Tasks: FC = (): ReactElement => {
     const { data, isError, isSuccess, isPending, error } = useFetchTasks();
+    const todoCount = data?.data?.filter((task): task is ITask => task && 'status' in task && typeof task.status === 'string')
+        .filter(task => task.status === "todo").length ?? 0;
+    const inProgressCount = data?.data?.filter((task): task is ITask => task && 'status' in task && typeof task.status === 'string')
+        .filter(task => task.status === "inProgress").length ?? 0;
+    const completedCount = data?.data?.filter((task): task is ITask => task && 'status' in task && typeof task.status === 'string')
+        .filter(task => task.status === "completed").length ?? 0;
     return (
         <section className="flex flex-row w-full p-4 gap-8">
             <section className="flex basis-2/3 justify-center">
@@ -17,27 +23,15 @@ export const Tasks: FC = (): ReactElement => {
                     <div className="flex justify-around mb-12">
                         <TasksCounter
                             status="todo"
-                            count={
-                                data && data.meta && "todoTasks" in data.meta
-                                ? (data.meta.todoTasks as number)
-                                : 0
-                            }
+                            count={todoCount}
                             />
                             <TasksCounter
                             status="inProgress"
-                            count={
-                                data && data.meta && "inProgressTasks" in data.meta
-                                ? (data.meta.inProgressTasks as number)
-                                : 0
-                            }
+                            count={inProgressCount}
                             />
                             <TasksCounter
                             status="completed"
-                            count={
-                                data && data.meta && "completedTasks" in data.meta
-                                ? (data.meta.completedTasks as number)
-                                : 0
-                            }
+                            count={completedCount}
                             />
                     </div>
                         {data &&
