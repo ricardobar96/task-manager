@@ -5,6 +5,19 @@ import { TaskSidebar } from "@/components/taskSidebar/taskSidebar";
 import { useFetchTasks } from "@/hooks/useFetchTasks.hook";
 import type { ITask } from "@/types/task.interface";
 
+function getDate() {
+  const today = new Date();
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  };
+
+  const formattedDate = today.toLocaleDateString("en-GB", options);
+  return formattedDate;
+}
+
 export const Tasks: FC = (): ReactElement => {
     const { data, isError, isSuccess, isPending, error } = useFetchTasks();
     const todoCount = data?.data?.filter((task): task is ITask => task && 'status' in task && typeof task.status === 'string')
@@ -18,7 +31,7 @@ export const Tasks: FC = (): ReactElement => {
             <section className="flex basis-2/3 justify-center">
                 <div className="flex flex-col w-4/5">
                     <h1 className="text-white font-bold text-2xl mb-8">
-                        Current tasks
+                        {getDate()}
                     </h1>
                     <div className="flex justify-around mb-12">
                         <TasksCounter
