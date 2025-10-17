@@ -46,7 +46,8 @@ export const Tasks: FC = (): ReactElement => {
                     ) &&
                     data.data.map((task: ITask) => (
                     <Task
-                        key={task["_id"]}
+                        key={task._id}
+                        _id={task._id}
                         dueDate={task.dueDate}
                         description={task.description}
                         status={task.status}

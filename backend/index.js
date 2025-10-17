@@ -28,6 +28,29 @@ app.post('/tasks/create', async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 });
+app.patch('/tasks/update', async (req, res) => {
+  try {
+    const { _id, status } = req.body;
+
+    if (!_id || !status) {
+      return res.status(400).json({ success: false, message: "Missing _id or status" });
+    }
+
+    const task = await Task.findByIdAndUpdate(
+      _id,
+      { status },
+      { new: true }
+    );
+
+    if (!task) {
+      return res.status(404).json({ success: false, message: "Task not found" });
+    }
+
+    res.status(200).json({ success: true, data: task });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+});
 
 mongoose
   .connect(process.env.MONGO_URI)

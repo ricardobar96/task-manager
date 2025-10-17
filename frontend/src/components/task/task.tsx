@@ -12,15 +12,37 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import type { ITask } from "@/types/task.interface";
-import type { FC, ReactElement } from "react";
+import { useEffect, useState, type FC, type ReactElement } from "react";
+import { useUpdateTask } from "@/hooks/useUpdateTask.hook";
     
 export const Task: FC<ITask> = (props: ITask): ReactElement => {
   const {title, description, status, priority, dueDate, _id} = props;
+  const { mutate, isSuccess } = useUpdateTask();
+  const [progress, setProgress] = useState(false);
   let formattedDate = new Date(dueDate).toLocaleString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric"
   })
+
+  useEffect(() => {
+    if (status === "inProgress") {
+      setProgress(true);
+    }
+  }, [status]);
+
+  function handleProgressChange(value: boolean) {
+    setProgress(value);
+    if (_id) {
+      mutate({ _id: _id, status: value ? "inProgress" : "todo" });
+    }
+  }
+
+  function handleTaskCompleted() {
+    if (_id) {
+      mutate({ _id: _id, status: "completed" });
+    }
+  }
 
   return (
     <Card className="w-full mb-8">
@@ -54,12 +76,12 @@ export const Task: FC<ITask> = (props: ITask): ReactElement => {
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex flex-row items-center">
-          <Switch id="in-progress" checked={status === "inProgress"? true : false}/>
+          <Switch id="in-progress" checked={progress} onCheckedChange={handleProgressChange}/>
           <Label className="ml-4" htmlFor="in-progress">
             In Progress
           </Label>
         </div>
-        <Button>Completed</Button>
+        <Button onClick={handleTaskCompleted}>Completed</Button>
       </CardFooter>
     </Card>
   );
