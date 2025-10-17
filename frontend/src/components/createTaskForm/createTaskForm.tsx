@@ -54,6 +54,10 @@ export function CreateTaskForm () {
   function onSubmit(values: any) {
     let dueDate = values.dueDate.toISOString();
     mutate({ ...values, dueDate });
+    queryClient.invalidateQueries({
+      queryKey: ["fetchTasks"],
+      refetchType: "all",
+    });
   }
 
   useEffect(() => {

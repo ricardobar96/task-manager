@@ -14,10 +14,12 @@ import { Switch } from "@/components/ui/switch";
 import type { ITask } from "@/types/task.interface";
 import { useEffect, useState, type FC, type ReactElement } from "react";
 import { useUpdateTask } from "@/hooks/useUpdateTask.hook";
+import { useQueryClient } from "@tanstack/react-query";
     
 export const Task: FC<ITask> = (props: ITask): ReactElement => {
   const {title, description, status, priority, dueDate, _id} = props;
   const { mutate, isSuccess } = useUpdateTask();
+  const queryClient = useQueryClient();
   const [progress, setProgress] = useState(false);
   let formattedDate = new Date(dueDate).toLocaleString("en-GB", {
     day: "numeric",
@@ -36,12 +38,20 @@ export const Task: FC<ITask> = (props: ITask): ReactElement => {
     if (_id) {
       mutate({ _id: _id, status: value ? "inProgress" : "todo" });
     }
+    queryClient.invalidateQueries({
+      queryKey: ["fetchTasks"],
+      refetchType: "all",
+    });
   }
 
   function handleTaskCompleted() {
     if (_id) {
       mutate({ _id: _id, status: "completed" });
     }
+    queryClient.invalidateQueries({
+      queryKey: ["fetchTasks"],
+      refetchType: "all",
+    });
   }
 
   return (
