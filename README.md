@@ -1,4 +1,11 @@
-API created with **Typescript** and **React** that offers a GUI with which users can manage their tasks.
+Full-stack task management app that provides a responsive interface where
+users can **create**, **view**, and **update** tasks, while the backend handles data storage and task status management.
+
+**Front-end** built with **React** and **TypeScript**, using React Hooks and a component-based architecture to provide a responsive experience.
+
+**Back-end** developed with **Node.js** and **Express**, handling all **API requests** for task creation, retrieval, and status updates.
+
+Tasks are stored and managed in a **MongoDB database**.
 <br>
 <br>
 
