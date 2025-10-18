@@ -15,6 +15,13 @@ Tasks are stored and managed in a **MongoDB database**.
 <br>
 
 ## Screenshots
+![Captura de pantalla 2025-10-18 160458](https://github.com/user-attachments/assets/2593ec27-d30d-4a10-b16d-2941c95909ae)
+
+![Captura de pantalla 2025-10-18 160713](https://github.com/user-attachments/assets/6a9301c4-b7e8-4f5d-a997-b2466ebe8140)
+
+![Captura de pantalla 2025-10-18 160934](https://github.com/user-attachments/assets/c91aae2d-b574-468b-a3da-2cd4f5f26db9)
+
+![create-task-2](https://github.com/user-attachments/assets/91cce419-2fe1-40c2-a15a-2deaa0533a6e)
 
 <br>
 
