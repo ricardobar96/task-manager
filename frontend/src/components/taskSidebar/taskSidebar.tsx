@@ -7,7 +7,7 @@ import { CreateTaskForm } from "../createTaskForm/createTaskForm";
 export const TaskSidebar: FC = (): ReactElement => {
   return (
     <section className={`fixed right-4 top-4 ${styles.sidebarHeight}`}>
-      <Card className="flex flex-col w-full h-full p-6 justify-between">
+      <Card className="flex flex-col w-full  p-6 justify-between">
         <UserProfile firstName="Ricardo" lastName="Baloira"/>
         <CreateTaskForm />
       </Card>

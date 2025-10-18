@@ -7,7 +7,7 @@ export const UserProfile: FC<{ firstName: string, lastName: string }> = (props):
 
   return (
     <div className="flex flex-col w-full py-4 items-center">
-      <Avatar className={`mb-4 ${cn("h-20", "w-20")}`}>
+      <Avatar className={`mb-4 ${cn("h-24", "w-24")}`}>
         <AvatarFallback
           className={`text-2xl font-semibold ${cn(
             "bg-sky-600",
