@@ -1,3 +1,5 @@
+# Task-Manager
+
 Full-stack task management app that provides a responsive interface where
 users can **create**, **view**, and **update** tasks, while the backend handles data storage and task status management.
 
