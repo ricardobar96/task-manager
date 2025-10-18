@@ -3,7 +3,6 @@ import { Card } from "@/components/ui/card";
 import styles from "./style.module.css";
 import { UserProfile } from "../userProfile/userProfile";
 import { CreateTaskForm } from "../createTaskForm/createTaskForm";
-import { Logout } from "../logout/logout";
 
 export const TaskSidebar: FC = (): ReactElement => {
   return (
@@ -11,7 +10,6 @@ export const TaskSidebar: FC = (): ReactElement => {
       <Card className="flex flex-col w-full h-full p-6 justify-between">
         <UserProfile firstName="Ricardo" lastName="Baloira"/>
         <CreateTaskForm />
-        <Logout />
       </Card>
     </section>
   );
