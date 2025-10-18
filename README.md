@@ -27,6 +27,24 @@ Tasks are stored and managed in a **MongoDB database**.
 
 ## Features
 
+* **Create Tasks:** Allows users to add new tasks with a title, description, due date, priority, and initial status.
+
+<br>
+
+* **View Tasks:** Displays a list of all tasks with their details in a responsive interface.
+
+<br>
+
+* **Persistent Data Storage:** All tasks are stored in a MongoDB database and retrieved dynamically via the backend API.
+
+<br>
+
+* **Update Task Status:** Users can change the status of tasks to "in progress" or "completed" using simple controls.
+
+<br>
+
+* **Task Prioritization:** Tasks can be marked as low, medium, or high priority for better organization.
+
 <br>
 
 ## Contributing
